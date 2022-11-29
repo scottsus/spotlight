@@ -3,6 +3,7 @@ import {
   websiteScrape,
   seatgeekScrape,
   ticketmasterScrape,
+  tickpickScrape,
 } from './siteCheckoutScrape';
 
 export const siteNames = ['seatgeek', 'stubhub', 'ticketmaster', 'tickpick'];
@@ -132,6 +133,7 @@ const getNameFromURL = (url: string) => {
 const siteMap = {
   seatgeek: seatgeekScrape,
   ticketmaster: ticketmasterScrape,
+  tickpick:tickpickScrape,
 };
 
 export default findSportsTickets;

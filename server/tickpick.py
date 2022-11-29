@@ -19,7 +19,7 @@ import time
 def scrape(team1, team2, section, row, price, quantity):
     tickets_list = []
     url = 'https://www.tickpick.com/'
-    print("Finding cheaper tickets for " + team1 + " vs " + team2 + " at " + "Section: " 
+    print("Finding " + str(quantity) + " tickets for " + team1 + " vs " + team2 + " at " + "Section: " 
     + str(section) + " Row: " + str(row) + " at $" + str(price) + " from " + url + "\n")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     driver.get(url)
@@ -70,7 +70,6 @@ def scrape(team1, team2, section, row, price, quantity):
                 tickets_list.append(("tickpick", section, this_row, float(this_price) * int(quantity), url))
                 print("[FOUND]", "section:", section, "row:", this_row, "price:", float(this_price) * int(quantity))
 
-        print(tickets_list)
         return tickets_list
 
     

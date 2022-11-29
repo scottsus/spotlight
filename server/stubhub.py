@@ -83,7 +83,6 @@ def scrape(team1, team2, src_section, src_row, src_total_price, quantity):
             except IndexError:
                 break
             idx += 1
-
         return tickets_list
     
     except TimeoutException:
@@ -92,7 +91,8 @@ def scrape(team1, team2, src_section, src_row, src_total_price, quantity):
     except NoSuchElementException:
         print("No such element exception from Stubhub")
         return tickets_list
-    except StaleElementReferenceException:
+    except StaleElementReferenceException as e:
+        print(e)
         print("State element exception from Stubhub")
         return tickets_list
     except ElementNotInteractableException:

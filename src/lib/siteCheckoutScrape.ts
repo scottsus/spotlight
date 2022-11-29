@@ -59,6 +59,38 @@ export const ticketmasterScrape: websiteScrape = (text) => {
   return [sectionNumber, rowNumber, totalPrice, quantity];
 };
 
+export const tickpickScrape: websiteScrape = (text) => {
+  const parts = parse(text);
+  let sIdx = 0,
+    rIdx = 0,
+    pIdx = 0,
+    qIdx = 0;
+  while (sIdx < parts.length && parts[sIdx] !== 'Section') {
+    sIdx++;
+  }
+  while (rIdx < parts.length && parts[rIdx] !== 'Row') {
+    rIdx++;
+  }
+  while (pIdx < parts.length && parts[pIdx].charAt(0) !== '$') {
+    pIdx++;
+  }
+  while (qIdx < parts.length && parts[qIdx] !== 'Quantity') {
+    qIdx++;
+  }
+  const sectionNumber = truncate(parts[sIdx + 1]);
+  const rowNumber = truncate(parts[rIdx + 1]);
+  const price = parts[pIdx].substring(1);
+  const quantity = parts[qIdx + 2];
+  check(
+    parts,
+    sectionNumber,
+    rowNumber,
+    parseFloat(price) * quantity,
+    quantity
+  );
+  return [sectionNumber, rowNumber, parseFloat(price) * quantity, quantity];
+};
+
 const parse = (text: string) => {
   const spaces = text.split(' ');
   let parts = [];

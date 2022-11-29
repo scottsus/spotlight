@@ -21,7 +21,7 @@ def scrape(team1, team2, section, row, price, quantity):
     url = 'https://seatgeek.com'
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     driver.get(url)
-    print("Finding cheaper tickets for " + team1 + " vs " + team2 + " at " + "Section: " 
+    print("Finding " + str(quantity) + " tickets for " + team1 + " vs " + team2 + " at " + "Section: " 
     + str(section) + " Row: " + str(row) + " at $" + str(price) + " from " + url + "\n")
     
     try: 
@@ -53,6 +53,8 @@ def scrape(team1, team2, section, row, price, quantity):
         actions = ActionChains(driver)
         
         for x in range(5, min(500, int(number))):
+            
+            
             if x - last > 6:
                 nextElement = driver.find_element(By.XPATH, f"//*[@id=\"start-of-content\"]/div[1]/div/div[{x+10}]")
                 actions.move_to_element(nextElement).perform()
@@ -72,7 +74,6 @@ def scrape(team1, team2, section, row, price, quantity):
                     )
                 ).click()
             
-        print(tickets_list)
         return tickets_list
         
             

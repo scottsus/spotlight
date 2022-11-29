@@ -22,7 +22,7 @@
                 "*://checkout.ticketmaster.com/*",
                 "*://*.seatgeek.com/checkout*",
                 "*://*.stubhub.com/secure/buy/*",
-                "*://*.tickpick.com/buy/checkout?*"
+                "*://*.tickpick.com/checkout?*"
             ],
             "js": ["NBA.js"]
         },
