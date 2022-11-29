@@ -17,6 +17,7 @@ import time
 
 # Stubhub specific webscraping
 def scrape(team1, team2, src_section, src_row, src_total_price, quantity):
+    tickets_list = []
     url = 'https://stubhub.com'
     print("Finding " + str(quantity) + " tickets for " + team1 + " vs " + team2 + " at " + "Section: " 
     + str(src_section) + " Row: " + str(src_row) + " at $" + str(src_total_price) + " from " + url + "\n")
@@ -59,7 +60,7 @@ def scrape(team1, team2, src_section, src_row, src_total_price, quantity):
         # print("Set estimated fees to true", driver.current_url)
 
         idx = 0
-        tickets_list = []
+        
         while True:
             WebDriverWait(driver, 10).until(
                 EC.presence_of_all_elements_located(
@@ -89,16 +90,16 @@ def scrape(team1, team2, src_section, src_row, src_total_price, quantity):
         return tickets_list
     
     except TimeoutException:
-        print("Timeout!")
+        print("Timeout from Stubhub!")
         return tickets_list
     except NoSuchElementException:
-        print("No such element exception")
+        print("No such element exception from Stubhub")
         return tickets_list
     except StaleElementReferenceException:
-        print("State element exception")
+        print("State element exception from Stubhub")
         return tickets_list
     except ElementNotInteractableException:
-        print("Element not interactible exception")
+        print("Element not interactible exception from Stubhub")
         return tickets_list
 
     
